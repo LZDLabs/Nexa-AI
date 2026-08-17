@@ -6,11 +6,12 @@
   <title>NEXA — AI Website Builder</title>
   <meta name="description" content="NEXA — Show the world what your vision looks like." />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header class="nav">
     <a class="logo" href="#">NEXA</a>
-    <nav>
+    <nav id="mainNav">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <button class="nav-button" id="startButton">Start creating</button>
@@ -25,10 +26,7 @@
       <button class="primary" id="heroButton">Create with NEXA <span>→</span></button>
       <div class="prompt-preview">
         <div class="prompt-icon">✦</div>
-        <div>
-          <span>Try a prompt</span>
-          <strong>“Create a modern portfolio for a designer...”</strong>
-        </div>
+        <div><span>Try a prompt</span><strong>“Create a modern portfolio for a designer...”</strong></div>
       </div>
     </section>
 
@@ -48,6 +46,34 @@
       </div>
     </section>
   </main>
+
+  <div class="auth-backdrop" id="authBackdrop" hidden>
+    <section class="auth-card" aria-label="NEXA account">
+      <button class="close-auth" id="closeAuth" aria-label="Close">×</button>
+      <div class="badge">✦ NEXA account</div>
+      <h2 id="authTitle">Create your account</h2>
+      <p id="authSubtitle">Start building with 100 free credits.</p>
+      <form id="authForm">
+        <label id="nameField"><span>Name</span><input id="name" type="text" autocomplete="name" placeholder="Your name" /></label>
+        <label><span>Email</span><input id="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
+        <label><span>Password</span><input id="password" type="password" autocomplete="new-password" placeholder="At least 6 characters" minlength="6" required /></label>
+        <button class="primary auth-submit" id="authSubmit" type="submit">Create account <span>→</span></button>
+      </form>
+      <p class="auth-message" id="authMessage"></p>
+      <button class="switch-auth" id="switchAuth" type="button">Already have an account? Sign in</button>
+    </section>
+  </div>
+
+  <div class="dashboard-backdrop" id="dashboardBackdrop" hidden>
+    <section class="dashboard-card">
+      <button class="close-auth" id="closeDashboard">×</button>
+      <div class="badge">✦ Your NEXA</div>
+      <h2>Welcome back.</h2>
+      <p id="userEmail"></p>
+      <div class="account-stats"><div><span>Plan</span><strong id="userPlan">Free</strong></div><div><span>Credits</span><strong id="userCredits">100</strong></div></div>
+      <button class="primary" id="signOut">Sign out</button>
+    </section>
+  </div>
 
   <footer><strong>NEXA</strong><span>Show the world what your vision looks like.</span></footer>
   <script src="script.js"></script>
